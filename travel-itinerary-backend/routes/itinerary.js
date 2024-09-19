@@ -1,25 +1,43 @@
 // routes/itinerary.js
-const express = require('express');
-const router = express.Router();
-const axios = require('axios');
+import express from 'express';
+import OpenAI from 'openai';
 
-// Rota para obter o itinerário de uma cidade específica
+const router = express.Router();
+
 router.get('/:city', async (req, res) => {
   const city = req.params.city;
+
   try {
-    const response = await axios.get('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyCpkVTAb2uPguqu5TIrCuopPiOV51uFUKM', {
-      params: {
-        city: city,
-        apiKey: process.env.API_KEY, // Use sua chave de API a partir das variáveis de ambiente
-      },
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY não está definida no arquivo .env');
+    }
+
+    // Instanciar a classe OpenAI com a chave de API
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
     });
 
-    // Supondo que 'response.data' contenha o roteiro
-    res.json(response.data);
+    const prompt = `Crie um itinerário detalhado de viagem de 3 dias para a cidade de ${city}, incluindo as principais atrações turísticas, restaurantes recomendados e dicas de transporte.`;
+
+    // Fazer a requisição à API usando o novo método
+    const response = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 1000,
+      temperature: 0.7,
+    });
+
+    // Extrair o itinerário da resposta
+    const itinerary = response.choices[0].message.content.trim();
+
+    res.json({ itinerary });
   } catch (error) {
-    console.error('Erro ao obter o roteiro:', error.message);
+    console.error(
+      'Erro ao obter o roteiro:',
+      error.response ? error.response.data : error.message
+    );
     res.status(500).json({ error: 'Erro ao obter o roteiro' });
   }
 });
 
-module.exports = router;
+export default router;
