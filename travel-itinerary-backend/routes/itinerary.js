@@ -9,8 +9,8 @@ const router = express.Router();
 // Inicializar a API com a chave do .env
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-router.get('/:city', async (req, res) => {
-  const city = req.params.city;
+router.post('/', async (req, res) => {
+  const city = req.body.texto;
 
   try {
     if (!process.env.API_KEY) {
@@ -21,7 +21,7 @@ router.get('/:city', async (req, res) => {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     // Definindo o prompt com base na cidade
-    const prompt = `Crie um itinerário detalhado de viagem de 3 dias para a cidade de ${city}, incluindo as principais atrações turísticas, restaurantes recomendados e dicas de transporte.`;
+    const prompt = "valide se a requisição tem haver com alguma viagem, caso sim, retorne um itinerário detalhado de viagem para a cidade escolhida, incluindo as principais atrações turísticas, restaurantes recomendados e dicas de transporte. e de uma forma mais natural, caso contrario retorne 'Faça uma pergunta referente a viagem'. Requesição:" + city;
 
     // Passando o prompt no formato adequado
     const result = await model.generateContent({
