@@ -2,4 +2,3 @@ GET http://localhost:5001/api/itinerary/São%20Paulo HTTP/1.1
 Content-Type: application/json
 
 ###
-
