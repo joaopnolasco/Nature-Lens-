@@ -8,8 +8,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 // Importar rotas
-import itineraryRoute from './routes/itinerary.js';
-import favoritesRoute from './routes/favorites.js';
+import identifyRoute from './routes/identify.js';
+import favoriteSpeciesRoute from './routes/favoriteSpecies.js';
 
 const app = express();
 
@@ -26,8 +26,8 @@ mongoose
   );
 
 // Usar rotas
-app.use('/api/itinerary', itineraryRoute);
-app.use('/api/favorites', favoritesRoute);
+app.use('/api/identify', identifyRoute);
+app.use('/api/favoritespecies', favoriteSpeciesRoute);
 
 // Rota raiz para teste
 app.get('/', (req, res) => {
