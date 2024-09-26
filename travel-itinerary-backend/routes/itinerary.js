@@ -6,7 +6,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const router = express.Router();
 
-// Inicializar a API com a chave do .env
+// Inicializar a API com a chave do .env (API_KEY)
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 router.post('/', async (req, res) => {
