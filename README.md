@@ -1,14 +1,14 @@
-# BackEnd do Projeto
-![Captura de tela 2024-10-07 111610](https://github.com/user-attachments/assets/38b5339e-0837-41f5-b968-a2af1daae8b0)
-
-
-
-# NatureLens
-
-
-## Descrição
-
 **NatureLens** é uma aplicação que identifica espécies de plantas e animais a partir de imagens, utilizando IA e integração com APIs como Google Gemini Vision Pro e GBIF, promovendo a conscientização ambiental.
+
+# FrontEnd do Projeto
+
+![Captura de tela 2024-10-07 114232](https://github.com/user-attachments/assets/3dc01552-faf0-4a2c-9bdb-5a7609f22d22)
+![Captura de tela 2024-10-07 113704](https://github.com/user-attachments/assets/aa7a6b69-9877-4ce2-b809-f4f0c0c2609a)
+![Captura de tela 2024-10-07 115731](https://github.com/user-attachments/assets/e7c01703-7578-41aa-81ea-3a137c0590b6)
+
+# BackEnd do Projeto
+
+![Captura de tela 2024-10-07 111610](https://github.com/user-attachments/assets/38b5339e-0837-41f5-b968-a2af1daae8b0)
 
 ## Início Rápido
 
